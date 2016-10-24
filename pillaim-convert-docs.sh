@@ -7,22 +7,28 @@ name=${input1%.*}
 echo "Filename: $name"
 # Declare input argument as a variable
 
-if [ $input1 == *.md ] || [ $input1 == *.markdown ]; then
-pandoc -o $name.html $name.md
+convert_markdown() 
+{
+pandoc -s -o $name.html $name.md
 # Convert markdown to HTML
 
-pandoc -o $name.docx $name.md
+pandoc -s -o $name.docx $name.md
 # Convert markdown to DOCX
 
-pandoc -o $name.odt $name.md
+pandoc -s -o $name.odt $name.md
 # Convert markdown to ODT
 
-pandoc -o $name.pdf $name.md
+pandoc -s -o $name.pdf $name.md
 # Convert markdown to PDF
 
-echo "Converted INPUT-FILENAME to HTML, DOCX, ODT, PDF"
-# Make the command line read "Converted INPUT-FILENAME to HTML, DOCX, ODT, PDF"
-else
-echo "Error. You did not input a markdown file."
-fi
+echo "Converted $input1 to HTML, DOCX, ODT, PDF"
+# Make the command line read "Converted INPUT-FILENAME to HTML, DOCX, ODT, PDF" 
+}
 
+## MAIN
+if [ $input1 == *.md ] || [ $input1 == *.markdown ]; then
+    echo Converting...
+    convert_markdown
+else
+echo "\e[31mError. You did not input a markdown file."
+fi
