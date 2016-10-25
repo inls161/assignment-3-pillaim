@@ -7,7 +7,8 @@ name=${input1%.*}
 echo "Filename: $name"
 # Declare input argument as a variable
 
-convert_markdown() 
+convert_markdown()
+#This function will convert a markdown file into HTML, DOCX, ODT, and PDF formats
 {
 pandoc -s -o $name.html $name.md
 # Convert markdown to HTML
@@ -29,6 +30,7 @@ echo "Converted $input1 to HTML, DOCX, ODT, PDF"
 if [ $input1 == *.md ] || [ $input1 == *.markdown ]; then
     echo Converting...
     convert_markdown
+    #call function
 else
-echo "\e[31mError. You did not input a markdown file."
+echo -e "\e[31mError: You did not input a markdown file."
 fi
