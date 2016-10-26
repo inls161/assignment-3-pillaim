@@ -2,7 +2,9 @@
 #Assignment 3 Script
 
 echo "Please input a markdown file that is in this directory (EX: README.md): "
+
 read input1
+
 name=${input1%.*}
 echo "Filename: $name"
 # Declare input argument as a variable
@@ -27,7 +29,7 @@ echo "Converted $input1 to HTML, DOCX, ODT, PDF"
 }
 
 ## MAIN
-if [ $input1 == *.md ] || [ $input1 == *.markdown ]; then
+if [ ${input1#*.} = md ] || [ ${input1#*.} = markdown ]; then
     echo Converting...
     convert_markdown
     #call function
